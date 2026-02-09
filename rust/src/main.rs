@@ -23,6 +23,7 @@ async fn main() -> anyhow::Result<()> {
     // Build our application with a route
     let app = Router::new()
         .route("/", get(index))
+        .route("/projets-annuels", get(wip))
         .nest_service("/assets", ServeDir::new("assets"))
         .route_service("/style.css", tower_http::services::ServeFile::new("assets/style.css")) // Serve style.css at root for compatibility
         .with_state(app_state);
@@ -45,6 +46,17 @@ async fn index(State(state): State<Arc<AppState>>) -> impl IntoResponse {
     }
 
     match state.tera.render("index.html", &context) {
+        Ok(rendered) => Html(rendered),
+        Err(err) => {
+            println!("Template rendering error: {}", err);
+            Html(format!("Error rendering template: {}", err))
+        }
+    }
+}
+
+async fn wip(State(state): State<Arc<AppState>>) -> impl IntoResponse {
+    let context = Context::new();
+    match state.tera.render("wip.html", &context) {
         Ok(rendered) => Html(rendered),
         Err(err) => {
             println!("Template rendering error: {}", err);
