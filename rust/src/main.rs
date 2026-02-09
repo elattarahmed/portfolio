@@ -27,8 +27,8 @@ async fn main() -> anyhow::Result<()> {
         .route_service("/style.css", tower_http::services::ServeFile::new("assets/style.css")) // Serve style.css at root for compatibility
         .with_state(app_state);
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:433").await?;
-    println!("Listening on http://0.0.0.0:433");
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8443").await?;
+    println!("Listening on http://0.0.0.0:8443");
     axum::serve(listener, app).await?;
 
     Ok(())
