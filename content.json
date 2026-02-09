@@ -1,0 +1,46 @@
+{
+    "header": {
+        "logo": "Ahmed El Attar",
+        "nav": [
+            { "text": "Accueil", "link": "#home" },
+            { "text": "À propos", "link": "#about" },
+            { "text": "Projets", "link": "#projects" },
+            { "text": "Contact", "link": "#contact" }
+        ]
+    },
+    "hero": {
+        "greeting": "Bonjour, je suis<br>",
+        "name": "Ahmed El Attar",
+        "title": "Étudiant passionné de cybersécurité.",
+        "description": "Cette page est hebergée sur mon propre serveur, actuellement elle sert de heartbeat pour le tunnel Cloudflare. Le site sera modifié petit à petit à l'avenir (et sera codé en RUST !!!). Date de dernière modif : ",
+		"last-modified": "09/02/2026",
+        "buttonText": "Voir mes projets",
+        "buttonLink": "#projects"
+    },
+    "about": {
+        "title": "À propos de moi",
+        "description": "Je suis un étudiant passionné de cybersécurité et de développement web. Je suis à la recherche d'opportunités pour mettre en pratique mes compétences et contribuer à des projets innovants."
+    },
+    "projects": {
+        "title": "Mes Projets",
+        "items": [
+            {
+                "title": "HomeLab",
+                "description": "Mise en place d'un serveur ProxMox me permettant d'héberger plusieurs machines virtuelles et conteneurs (dont ce portfolio)"
+            },
+            {
+                "title": "OTA Server",
+                "description": "Serveur OTA (Over-The-Air) pour la mise à jour de firmwares de microcontrôleurs"
+            }
+        ]
+    },
+    "contact": {
+        "title": "Contact",
+        "description": "N'hésitez pas à me contacter pour toute collaboration.",
+        "buttonText": "Me contacter",
+        "buttonLink": "mailto:mr.ahmed.elattar.pro@gmail.com"
+    },
+    "footer": {
+        "text": "&copy; 2026 Ahmed El Attar. Tous droits réservés."
+    }
+}
