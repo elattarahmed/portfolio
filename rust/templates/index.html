@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Mon Portfolio</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<div class="logo">{{ header.logo }}</div>
+				<ul>
+					{% for item in header.nav %}
+					<li><a href="{{ item.link }}">{{ item.text }}</a></li>
+					{% endfor %}
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section id="home" class="hero">
+				<div class="hero-content">
+					<h1>
+						{{ hero.greeting | safe }}
+						<span class="highlight">{{ hero.name }}</span>
+					</h1>
+					<p class="hero-title">{{ hero.title }}</p>
+					<p class="hero-description">
+						{{ hero.description }}{{ hero["last-modified"] }}
+					</p>
+					<a href="{{ hero.buttonLink }}" class="btn">{{ hero.buttonText }}</a>
+				</div>
+			</section>
+
+			<section id="about">
+				<h2>{{ about.title }}</h2>
+				<p>{{ about.description }}</p>
+			</section>
+
+			<section id="projects">
+				<h2>{{ projects.title }}</h2>
+				<div class="projects-grid">
+					{% for project in projects.items %}
+					<div class="project-card">
+						<h3>{{ project.title }}</h3>
+						<p>{{ project.description }}</p>
+					</div>
+					{% endfor %}
+				</div>
+			</section>
+
+			<section id="contact">
+				<h2>{{ contact.title }}</h2>
+				<p>{{ contact.description }}</p>
+				<a href="{{ contact.buttonLink }}" class="btn btn-secondary"
+					>{{ contact.buttonText }}</a
+				>
+			</section>
+		</main>
+
+		<footer>
+			<p>{{ footer.text | safe }}</p>
+		</footer>
+	</body>
+</html>
