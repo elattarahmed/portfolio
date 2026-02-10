@@ -172,18 +172,24 @@ h2::after {
 }
 
 .project-card {
-	background-color: var(--secondary-color);
+	background: rgba(30, 41, 59, 0.6);
+	backdrop-filter: blur(5px);
 	padding: 2rem;
 	border-radius: 15px;
 	transition:
 		transform 0.3s,
-		border-color 0.3s;
+		border-color 0.3s,
+		box-shadow 0.3s;
 	border: 1px solid rgba(255, 255, 255, 0.05);
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .project-card:hover {
 	transform: translateY(-5px);
 	border-color: var(--primary-color);
+	box-shadow:
+		0 10px 15px -3px rgba(56, 189, 248, 0.2),
+		0 4px 6px -2px rgba(0, 0, 0, 0.1);
 }
 
 .project-card h3 {
@@ -214,32 +220,67 @@ footer {
 		display: none; /* Simplification mobile */
 	}
 }
-/* Experience List */
+/* Experience & Education - Timeline Style */
 .experience-list,
 .education-list {
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+	position: relative;
+	padding-left: 2rem;
+	border-left: 2px solid rgba(56, 189, 248, 0.2);
 }
 
 .experience-item,
 .education-item {
-	background-color: var(--secondary-color);
+	position: relative;
+	background: rgba(30, 41, 59, 0.6);
+	backdrop-filter: blur(5px);
 	padding: 2rem;
 	border-radius: 15px;
-	border-left: 4px solid var(--primary-color);
-	transition: transform 0.3s;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	box-shadow:
+		0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	transition:
+		transform 0.3s,
+		border-color 0.3s;
+}
+
+/* Timeline Dot */
+.experience-item::before,
+.education-item::before {
+	content: "";
+	position: absolute;
+	left: -2.6rem; /* Adjust to center on the line */
+	top: 2rem;
+	width: 1.2rem;
+	height: 1.2rem;
+	background-color: var(--bg-color);
+	border: 3px solid var(--primary-color);
+	border-radius: 50%;
+	transition:
+		background-color 0.3s,
+		transform 0.3s;
 }
 
 .experience-item:hover,
 .education-item:hover {
 	transform: translateX(10px);
+	border-color: rgba(56, 189, 248, 0.3);
+}
+
+.experience-item:hover::before,
+.education-item:hover::before {
+	background-color: var(--primary-color);
+	transform: scale(1.2);
 }
 
 .experience-item h3,
 .education-item h3 {
 	color: var(--text-color);
 	margin-bottom: 0.5rem;
+	font-size: 1.3rem;
 }
 
 .experience-item .company,
@@ -247,6 +288,7 @@ footer {
 	color: var(--primary-color);
 	font-weight: 600;
 	margin-bottom: 0.5rem;
+	display: inline-block;
 }
 
 .experience-item .period,
@@ -255,9 +297,10 @@ footer {
 	font-size: 0.9rem;
 	margin-bottom: 1rem;
 	font-style: italic;
+	display: block;
 }
 
-/* Skills List */
+/* Skills List - Enhanced Tags */
 .skills-list {
 	display: flex;
 	flex-wrap: wrap;
@@ -266,10 +309,22 @@ footer {
 }
 
 .skills-list li {
-	background-color: rgba(56, 189, 248, 0.1);
+	background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(30, 41, 59, 0.5));
 	color: var(--primary-color);
-	padding: 0.5rem 1.5rem;
+	padding: 0.6rem 1.5rem;
 	border-radius: 50px;
 	font-weight: 500;
 	border: 1px solid rgba(56, 189, 248, 0.2);
+	transition: all 0.3s ease;
+	cursor: default;
+	position: relative;
+	overflow: hidden;
+}
+
+.skills-list li:hover {
+	transform: translateY(-3px);
+	background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(30, 41, 59, 0.8));
+	border-color: var(--primary-color);
+	box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+	color: #fff;
 }

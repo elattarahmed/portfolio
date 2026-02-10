@@ -4,8 +4,8 @@
         "nav": [
             { "text": "Accueil", "link": "#home" },
             { "text": "À propos", "link": "#about" },
-            { "text": "Formation", "link": "#education" },
             { "text": "Expérience", "link": "#experience" },
+            { "text": "Formation", "link": "#education" },
             { "text": "Projets", "link": "#projects" },
             { "text": "Contact", "link": "#contact" }
         ]
@@ -34,7 +34,7 @@
             },
             {
                 "school": "ESGI",
-                "degree": "Tronc Commun",
+                "degree": "1ère et 2ème année : Tronc commun",
                 "period": "2023 – 2025",
                 "details": "Développement (C, Java, Python, Symfony), Réseaux & Serveurs (Virtualisation, AWS, Azure, Linux), Sécurité (OSINT, CTF)."
             },
