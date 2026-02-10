@@ -77,11 +77,31 @@
 							<div class="period">{{ item.period }}</div>
 						</div>
 						<div class="details">
+							{% if item.details %}
 							<ul>
 								{% for detail in item.details %}
 								<li>{{ detail }}</li>
 								{% endfor %}
 							</ul>
+							{% endif %} {% if item.sub_items %}
+							<div class="sub-items-container">
+								{% for sub in item.sub_items %}
+								<div class="sub-item">
+									<div class="sub-header">
+										<h4>{{ sub.degree }}</h4>
+										<span class="sub-period"
+											>{{ sub.period }}</span
+										>
+									</div>
+									<ul>
+										{% for detail in sub.details %}
+										<li>{{ detail }}</li>
+										{% endfor %}
+									</ul>
+								</div>
+								{% endfor %}
+							</div>
+							{% endif %}
 						</div>
 					</div>
 					{% endfor %}

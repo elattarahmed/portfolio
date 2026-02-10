@@ -28,23 +28,41 @@
         "items": [
             {
                 "school": "ESGI",
-                "degree": "3ème année Bachelor – Sécurité Informatique",
-                "period": "2025 – 2026",
+                "degree": "Bachelor Sécurité Informatique",
+                "period": "2023 – 2026",
                 "details": [
-                    "Sécurité : Cryptographie, Wifi, Python, RUST, Assembleur, PenTest, Exploit, Crochetage, IDS",
-                    "Annexes : Linux Administration, Anglais (TOEIC), Cyber Éthique, Gestion de projets",
-                    "Outils : Exegol, CyberChef, Let's Encrypt, WhoAmI"
-                ]
-            },
-            {
-                "school": "ESGI",
-                "degree": "1ère et 2ème année : Tronc commun",
-                "period": "2023 – 2025",
-                "details": [
-                    "Développement : C, Assembleur, Java, Python, Symfony, Doctrine ORM, UML",
-                    "Réseaux & Serveurs : Virtualisation, Eve-Ng, OpnSense, AWS, AZURE, Windows, Linux",
-                    "Sécurité : OSINT, CTF, WIFI, Cryptographie",
-                    "Data : Oracle, SQL, MCD/MLD"
+                    "École Supérieure de Génie Informatique",
+                    "Spécialisation en Cybersécurité, Administration Système & Réseaux"
+                ],
+                "sub_items": [
+                    {
+                        "degree": "3ème Année - Spécialisation Sécurité",
+                        "period": "2025 – 2026",
+                        "details": [
+                            "Sécurité Avancée : Cryptographie, Sécurité Wifi, IDS/IPS, PenTest, Exploit Dev",
+                            "Développement : Python (Scripting sécu), RUST (Système), Assembleur",
+                            "Projets : Audit de code, CTF, Développement d'outils de sécurité"
+                        ]
+                    },
+                    {
+                        "degree": "2ème Année - Tronc Commun",
+                        "period": "2024 – 2025",
+                        "details": [
+                            "Système & Réseaux : Virtualisation (ProxMox, VMware), AWS, Azure, Windows Server, Linux Admin",
+                            "Développement : Java, Python, C, Symfony (PHP), Doctrine ORM",
+                            "Sécurité : Initiation OSINT, CTF, Cryptographie basique"
+                        ]
+                    },
+                    {
+                        "degree": "1ère Année - Tronc Commun",
+                        "period": "2023 – 2024",
+                        "details": [
+                            "Bases de l'informatique : Algorithmie (C), HTML/CSS/JS, PHP",
+                            "Réseaux : Cisci Packet Tracer, Modèle OSI, Adressage IP",
+                            "Bases de données : SQL, Oracle, Modélisation (MCD/MLD)",
+                            "Mathématiques appliquées : Binaire, Hexadécimal, Logique booléenne"
+                        ]
+                    }
                 ]
             },
             {
@@ -52,8 +70,8 @@
                 "degree": "L1 Maths-Info",
                 "period": "2022 – 2023",
                 "details": [
-                    "Maths : Algèbre linéaire, Matrices, Proba et Stats",
-                    "Info : C, Arduino, Pseudo-Code, HTML/CSS"
+                    "Mathématiques : Algèbre linéaire, Matrices, Probabilités et Statistiques",
+                    "Informatique : Programmation C, Microcontrôleurs (Arduino), Web (HTML/CSS)"
                 ]
             }
         ]

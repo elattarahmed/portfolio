@@ -88,6 +88,33 @@ document.addEventListener("DOMContentLoaded", () => {
 			data.education.items.forEach((item) => {
 				const div = document.createElement("div");
 				div.className = "education-item";
+
+				let detailsHTML = "";
+				if (item.sub_items) {
+					detailsHTML += `<div class="sub-items-container">`;
+					item.sub_items.forEach((sub) => {
+						detailsHTML += `
+                            <div class="sub-item">
+                                <div class="sub-header">
+                                    <h4>${sub.degree}</h4>
+                                    <span class="sub-period">${sub.period}</span>
+                                </div>
+                                <ul>
+                                    ${sub.details.map((d) => `<li>${d}</li>`).join("")}
+                                </ul>
+                            </div>
+                        `;
+					});
+					detailsHTML += `</div>`;
+				}
+
+				// Add regular details if any (before sub-items)
+				if (item.details && item.details.length > 0) {
+					detailsHTML =
+						`<ul>${item.details.map((detail) => `<li>${detail}</li>`).join("")}</ul>` +
+						detailsHTML;
+				}
+
 				div.innerHTML = `
                     <div class="header-content">
                         <h3>${item.degree}</h3>
@@ -95,12 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="period">${item.period}</div>
                     </div>
                     <div class="details">
-                         <ul>
-                            ${item.details.map((detail) => `<li>${detail}</li>`).join("")}
-                        </ul>
+                        ${detailsHTML}
                     </div>
                 `;
-				div.addEventListener("click", () => {
+				div.addEventListener("click", (e) => {
+					// Prevent closing when clicking inside a sub-item (optional, but good UX)
 					div.classList.toggle("expanded");
 				});
 				educationContainer.appendChild(div);
