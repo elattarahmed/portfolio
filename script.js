@@ -38,9 +38,20 @@ document.addEventListener("DOMContentLoaded", () => {
 				const projectCard = document.createElement("div");
 				projectCard.className = "project-card";
 				projectCard.innerHTML = `
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
+                    <div class="card-header">
+                        <h3>${project.title}</h3>
+                        <span class="difficulty ${project.difficulty.toLowerCase()}">${project.difficulty}</span>
+                    </div>
+                    <p class="summary">${project.description}</p>
+                    <div class="details">
+                         <ul>
+                            ${project.details.map((detail) => `<li>${detail}</li>`).join("")}
+                        </ul>
+                    </div>
                 `;
+				projectCard.addEventListener("click", () => {
+					projectCard.classList.toggle("expanded");
+				});
 				projectsContainer.appendChild(projectCard);
 			});
 
@@ -52,11 +63,21 @@ document.addEventListener("DOMContentLoaded", () => {
 				const div = document.createElement("div");
 				div.className = "experience-item";
 				div.innerHTML = `
-                    <h3>${item.role}</h3>
-                    <div class="company">${item.company}</div>
-                    <div class="period">${item.period}</div>
-                    <p>${item.description}</p>
+                    <div class="header-content">
+                        <h3>${item.role}</h3>
+                        <div class="company">${item.company}</div>
+                        <div class="period">${item.period}</div>
+                    </div>
+                    <p class="summary">${item.description}</p>
+                    <div class="details">
+                        <ul>
+                            ${item.details.map((detail) => `<li>${detail}</li>`).join("")}
+                        </ul>
+                    </div>
                 `;
+				div.addEventListener("click", () => {
+					div.classList.toggle("expanded");
+				});
 				experienceContainer.appendChild(div);
 			});
 
@@ -68,11 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
 				const div = document.createElement("div");
 				div.className = "education-item";
 				div.innerHTML = `
-                    <h3>${item.degree}</h3>
-                    <div class="school">${item.school}</div>
-                    <div class="period">${item.period}</div>
-                    <p>${item.details}</p>
+                    <div class="header-content">
+                        <h3>${item.degree}</h3>
+                        <div class="school">${item.school}</div>
+                        <div class="period">${item.period}</div>
+                    </div>
+                    <div class="details">
+                         <ul>
+                            ${item.details.map((detail) => `<li>${detail}</li>`).join("")}
+                        </ul>
+                    </div>
                 `;
+				div.addEventListener("click", () => {
+					div.classList.toggle("expanded");
+				});
 				educationContainer.appendChild(div);
 			});
 

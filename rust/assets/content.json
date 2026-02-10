@@ -30,19 +30,31 @@
                 "school": "ESGI",
                 "degree": "3ème année Bachelor – Sécurité Informatique",
                 "period": "2025 – 2026",
-                "details": "Sécurité (Crypto, Wifi, Python, RUST, PenTest...), Linux Admin, Anglais, Gestion de projets."
+                "details": [
+                    "Sécurité : Cryptographie, Wifi, Python, RUST, Assembleur, PenTest, Exploit, Crochetage, IDS",
+                    "Annexes : Linux Administration, Anglais (TOEIC), Cyber Éthique, Gestion de projets",
+                    "Outils : Exegol, CyberChef, Let's Encrypt, WhoAmI"
+                ]
             },
             {
                 "school": "ESGI",
                 "degree": "1ère et 2ème année : Tronc commun",
                 "period": "2023 – 2025",
-                "details": "Développement (C, Java, Python, Symfony), Réseaux & Serveurs (Virtualisation, AWS, Azure, Linux), Sécurité (OSINT, CTF)."
+                "details": [
+                    "Développement : C, Assembleur, Java, Python, Symfony, Doctrine ORM, UML",
+                    "Réseaux & Serveurs : Virtualisation, Eve-Ng, OpnSense, AWS, AZURE, Windows, Linux",
+                    "Sécurité : OSINT, CTF, WIFI, Cryptographie",
+                    "Data : Oracle, SQL, MCD/MLD"
+                ]
             },
             {
                 "school": "UPJV",
                 "degree": "L1 Maths-Info",
                 "period": "2022 – 2023",
-                "details": "Maths (Algèbre, Proba), Info (C, Arduino, HTML/CSS)."
+                "details": [
+                    "Maths : Algèbre linéaire, Matrices, Proba et Stats",
+                    "Info : C, Arduino, Pseudo-Code, HTML/CSS"
+                ]
             }
         ]
     },
@@ -53,13 +65,24 @@
                 "company": "Publicis ReSources",
                 "role": "Technicien Support de Proximité",
                 "period": "Juin 2024 – Sept. 2026",
-                "description": "Gestion d'infrastructure (4000+ comptes AD/Entra ID), Support utilisateur (50+ tickets/semaine), Onboarding & Sécurité, Développement d'app web de gestion de stock."
+                "description": "Support utilisateur, Gestion d'infrastructure et Projets.",
+                "details": [
+                    "Gestion d'infrastructure : Administration de 4000+ comptes Active Directory / Entra ID",
+                    "Support : Résolution de 50+ tickets/incidents par semaine via Service Now",
+                    "Onboarding & Sécurité : Accueil des nouveaux arrivants (~15/semaine) et prévention sécurité",
+                    "Projet : Développement d'une application web de gestion de stock d'accessoires sécurisé"
+                ]
             },
             {
                 "company": "Alepia",
                 "role": "Stage Technicien N1",
                 "period": "Nov 2023 – Déc. 2023",
-                "description": "Support utilisateur N1, Maintenance Hardware, Préparation de postes et brassage réseau."
+                "description": "Support utilisateur N1 et maintenance matérielle.",
+                "details": [
+                    "Support utilisateur de niveau 1",
+                    "Maintenance Hardware (remplacement de composants) et Câble management",
+                    "Préparation de postes, logiciels et brassage réseau"
+                ]
             }
         ]
     },
@@ -68,35 +91,84 @@
         "items": [
             {
                 "title": "HomeLab",
-                "description": "Administration d'un serveur ProxMox personnel hébergeant divers services et VMs."
+                "difficulty": "Intermédiaire",
+                "description": "Administration d'un serveur ProxMox personnel.",
+                "details": [
+                    "Hébergement de machines virtuelles et conteneurs (LXC/Docker)",
+                    "Gestion réseau et VLANs",
+                    "Sauvegardes et monitoring"
+                ]
             },
             {
                 "title": "VPN Site à Site",
-                "description": "Mise en place d'un VPN IPSec avec HA, VIP et CARP sous PFSense."
+                "difficulty": "Avancé",
+                "description": "Mise en place d'un VPN IPSec HA avec PFSense.",
+                "details": [
+                    "Configuration IPSec avec HA (High Availability)",
+                    "Utilisation de VIP et CARP pour la redondance",
+                    "Tests de basculement et résilience"
+                ]
             },
             {
                 "title": "Audit Wifi",
-                "description": "Tests de pénétration Wifi (WEP, WPA2, WPS) et mise en place de Rogue AP."
+                "difficulty": "Avancé",
+                "description": "Tests de pénétration Wifi (WEP, WPA2, WPS).",
+                "details": [
+                    "Crack de mots de passe (WEP, WPA2, WPS)",
+                    "Mise en place de Rogue AP (Evil Twin)",
+                    "Capture et analyse de paquets"
+                ]
             },
             {
                 "title": "Gestion Accessoires (Publicis)",
-                "description": "Développement d'un outil de gestion de stocks et prêts en RUST."
+                "difficulty": "Avancé",
+                "description": "Outil de gestion de stocks en RUST.",
+                "details": [
+                    "Développement backend en Rust",
+                    "Gestion de base de données performante",
+                    "Interface pour le suivi des prêts et stocks"
+                ]
             },
             {
                 "title": "My3SIB",
-                "description": "Intranet alternatif utilisant l'API publique de MyGes (Laravel, ReactJS)."
+                "difficulty": "Intermédiaire",
+                "description": "Intranet alternatif utilisant l'API MyGes.",
+                "details": [
+                    "Backend Laravel et Frontend ReactJS",
+                    "Consommation de l'API publique MyGes",
+                    "Amélioration de l'UX étudiante"
+                ]
             },
             {
                 "title": "EcoDeli",
-                "description": "Projet annuel : Application web avec Symfony, Docker, Doctrine ORM."
+                "difficulty": "Débutant",
+                "description": "Projet annuel : Application web Symfony.",
+                "details": [
+                    "Framework Symfony avec Doctrine ORM",
+                    "Conteneurisation Docker",
+                    "Sécurisation SSL avec Let's Encrypt"
+                ]
             },
             {
                 "title": "Portfolio",
-                "description": "Site personnel hébergé à domicile (Self-hosted) avec RUST, Apache2 et Cloudflared."
+                "difficulty": "Avancé",
+                "description": "Site personnel self-hosted (Rust/Apache2).",
+                "details": [
+                    "Backend Rust (Axum, Tera)",
+                    "Reverse Proxy Apache2",
+                    "Tunneling Cloudflared pour l'exposition sécurisée",
+                    "Hard links pour la synchro des assets"
+                ]
             },
              {
                 "title": "OTA Server",
-                "description": "Serveur OTA (Over-The-Air) pour la mise à jour de firmwares de microcontrôleurs."
+                "difficulty": "Intermédiaire",
+                "description": "Serveur de mise à jour firmware OTA.",
+                "details": [
+                    "Distribution de firmwares pour microcontrôleurs",
+                    "Gestion des versions et déploiements",
+                    "Sécurisation des transferts"
+                ]
             }
         ]
     },
