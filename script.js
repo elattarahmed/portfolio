@@ -4,12 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		.then((data) => {
 			// Header
 			document.querySelector(".logo").textContent = data.header.logo;
-			const navLinks = document.querySelectorAll("nav ul li a");
-			data.header.nav.forEach((item, index) => {
-				if (navLinks[index]) {
-					navLinks[index].textContent = item.text;
-					navLinks[index].href = item.link;
-				}
+			// Header - Dynamic Navigation
+			const navList = document.querySelector("nav ul");
+			navList.innerHTML = ""; // Clear existing links
+			data.header.nav.forEach((item) => {
+				const li = document.createElement("li");
+				const a = document.createElement("a");
+				a.href = item.link;
+				a.textContent = item.text;
+				li.appendChild(a);
+				navList.appendChild(li);
 			});
 
 			// Hero
@@ -17,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			heroH1.innerHTML = `${data.hero.greeting} <span class="highlight">${data.hero.name}</span>`;
 			document.querySelector(".hero .hero-title").textContent = data.hero.title;
 			document.querySelector(".hero .hero-description").textContent =
-				data.hero.description + data.hero["last-modified"];
+				data.hero.description + " " + data.hero["last-modified"]; // Added space for safety
 			const heroBtn = document.querySelector(".hero .btn");
 			heroBtn.textContent = data.hero.buttonText;
 			heroBtn.href = data.hero.buttonLink;
@@ -38,6 +42,48 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p>${project.description}</p>
                 `;
 				projectsContainer.appendChild(projectCard);
+			});
+
+			// Experience
+			document.querySelector("#experience h2").textContent = data.experience.title;
+			const experienceContainer = document.querySelector(".experience-list");
+			experienceContainer.innerHTML = "";
+			data.experience.items.forEach((item) => {
+				const div = document.createElement("div");
+				div.className = "experience-item";
+				div.innerHTML = `
+                    <h3>${item.role}</h3>
+                    <div class="company">${item.company}</div>
+                    <div class="period">${item.period}</div>
+                    <p>${item.description}</p>
+                `;
+				experienceContainer.appendChild(div);
+			});
+
+			// Education
+			document.querySelector("#education h2").textContent = data.education.title;
+			const educationContainer = document.querySelector(".education-list");
+			educationContainer.innerHTML = "";
+			data.education.items.forEach((item) => {
+				const div = document.createElement("div");
+				div.className = "education-item";
+				div.innerHTML = `
+                    <h3>${item.degree}</h3>
+                    <div class="school">${item.school}</div>
+                    <div class="period">${item.period}</div>
+                    <p>${item.details}</p>
+                `;
+				educationContainer.appendChild(div);
+			});
+
+			// Skills
+			document.querySelector("#skills h2").textContent = data.skills.title;
+			const skillsContainer = document.querySelector(".skills-list");
+			skillsContainer.innerHTML = "";
+			data.skills.items.forEach((skill) => {
+				const li = document.createElement("li");
+				li.textContent = skill;
+				skillsContainer.appendChild(li);
 			});
 
 			// Contact

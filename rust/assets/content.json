@@ -4,6 +4,8 @@
         "nav": [
             { "text": "Accueil", "link": "#home" },
             { "text": "À propos", "link": "#about" },
+            { "text": "Formation", "link": "#education" },
+            { "text": "Expérience", "link": "#experience" },
             { "text": "Projets", "link": "#projects" },
             { "text": "Contact", "link": "#contact" }
         ]
@@ -11,27 +13,99 @@
     "hero": {
         "greeting": "Bonjour, je suis<br>",
         "name": "Ahmed El Attar",
-        "title": "Étudiant passionné de cybersécurité.",
-        "description": "Cette page est codé en rust et est hebergée sur mon propre serveur, actuellement elle sert de heartbeat pour le tunnel Cloudflare. Le site sera modifié petit à petit à l'avenir. Date de dernière modif : ",
-		"last-modified": "09/02/2026",
+        "title": "Alternant Sécurité Informatique - Admin Système et Réseaux",
+        "description": "Étudiant passionné de cybersécurité et d'administration système. Cette page est hebergée sur mon propre serveur. Dernière mise à jour : ",
+		"last-modified": "10/02/2026",
         "buttonText": "Voir mes projets",
         "buttonLink": "#projects"
     },
     "about": {
         "title": "À propos de moi",
-        "description": "Je suis un étudiant passionné de cybersécurité et de développement web. Je suis à la recherche d'opportunités pour mettre en pratique mes compétences et contribuer à des projets innovants."
+        "description": "Je suis actuellement en 3ème année de Bachelor Sécurité Informatique à l'ESGI. Passionné par la cybersécurité, l'administration système et le développement, je cherche constamment à approfondir mes connaissances à travers des projets concrets et mon alternance."
+    },
+    "education": {
+        "title": "Formation",
+        "items": [
+            {
+                "school": "ESGI",
+                "degree": "3ème année Bachelor – Sécurité Informatique",
+                "period": "2025 – 2026",
+                "details": "Sécurité (Crypto, Wifi, Python, RUST, PenTest...), Linux Admin, Anglais, Gestion de projets."
+            },
+            {
+                "school": "ESGI",
+                "degree": "Tronc Commun",
+                "period": "2023 – 2025",
+                "details": "Développement (C, Java, Python, Symfony), Réseaux & Serveurs (Virtualisation, AWS, Azure, Linux), Sécurité (OSINT, CTF)."
+            },
+            {
+                "school": "UPJV",
+                "degree": "L1 Maths-Info",
+                "period": "2022 – 2023",
+                "details": "Maths (Algèbre, Proba), Info (C, Arduino, HTML/CSS)."
+            }
+        ]
+    },
+    "experience": {
+        "title": "Expériences Professionnelles",
+        "items": [
+            {
+                "company": "Publicis ReSources",
+                "role": "Technicien Support de Proximité",
+                "period": "Juin 2024 – Sept. 2026",
+                "description": "Gestion d'infrastructure (4000+ comptes AD/Entra ID), Support utilisateur (50+ tickets/semaine), Onboarding & Sécurité, Développement d'app web de gestion de stock."
+            },
+            {
+                "company": "Alepia",
+                "role": "Stage Technicien N1",
+                "period": "Nov 2023 – Déc. 2023",
+                "description": "Support utilisateur N1, Maintenance Hardware, Préparation de postes et brassage réseau."
+            }
+        ]
     },
     "projects": {
-        "title": "Mes Projets",
+        "title": "Projets & Expériences Annexes",
         "items": [
             {
                 "title": "HomeLab",
-                "description": "Mise en place d'un serveur ProxMox me permettant d'héberger plusieurs machines virtuelles et conteneurs (dont ce portfolio)"
+                "description": "Administration d'un serveur ProxMox personnel hébergeant divers services et VMs."
             },
             {
+                "title": "VPN Site à Site",
+                "description": "Mise en place d'un VPN IPSec avec HA, VIP et CARP sous PFSense."
+            },
+            {
+                "title": "Audit Wifi",
+                "description": "Tests de pénétration Wifi (WEP, WPA2, WPS) et mise en place de Rogue AP."
+            },
+            {
+                "title": "Gestion Accessoires (Publicis)",
+                "description": "Développement d'un outil de gestion de stocks et prêts en RUST."
+            },
+            {
+                "title": "My3SIB",
+                "description": "Intranet alternatif utilisant l'API publique de MyGes (Laravel, ReactJS)."
+            },
+            {
+                "title": "EcoDeli",
+                "description": "Projet annuel : Application web avec Symfony, Docker, Doctrine ORM."
+            },
+            {
+                "title": "Portfolio",
+                "description": "Site personnel hébergé à domicile (Self-hosted) avec RUST, Apache2 et Cloudflared."
+            },
+             {
                 "title": "OTA Server",
-                "description": "Serveur OTA (Over-The-Air) pour la mise à jour de firmwares de microcontrôleurs"
+                "description": "Serveur OTA (Over-The-Air) pour la mise à jour de firmwares de microcontrôleurs."
             }
+        ]
+    },
+    "skills": {
+        "title": "Compétences & Intérêts",
+        "items": [
+            "Langues : Anglais (C1/B2), Arabe (B1), Hongrois (B1)",
+            "Leadership & Com : Ambassadeur ESGI, Tutorat",
+            "Apprentissage & Loisirs : ArchLinux, HTB, Boxe Anglaise, Échecs"
         ]
     },
     "contact": {
