@@ -17,11 +17,15 @@ async fn main() -> anyhow::Result<()> {
 
     // Build our application with a route
     let app = Router::new()
-        .nest_service("/assets", ServeDir::new("assets"))
-        .nest_service("/tech-journey", ServeDir::new("assets/tech-journey")) // Keep old route for now just in case
-        .fallback_service(ServeDir::new("assets/static")) // Serve React app at root and fallback
-        .route_service("/style.css", tower_http::services::ServeFile::new("assets/style.css"))
         .route("/api/content", get(get_content))
+        .route_service(
+            "/projets-annuels",
+            tower_http::services::ServeFile::new("assets/static/index.html")
+        )
+        .route_service("/style.css", tower_http::services::ServeFile::new("assets/style.css"))
+        .nest_service("/assets", ServeDir::new("assets"))
+        .nest_service("/tech-journey", ServeDir::new("assets/tech-journey"))
+        .fallback_service(ServeDir::new("assets/static"))
         .with_state(app_state);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8443").await?;
