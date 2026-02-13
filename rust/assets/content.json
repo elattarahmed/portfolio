@@ -178,7 +178,7 @@
                     "Hard links pour la synchro des assets"
                 ]
             },
-             {
+            {
                 "title": "OTA Server",
                 "difficulty": "Avancé",
                 "description": "Serveur de mise à jour firmware OTA.",

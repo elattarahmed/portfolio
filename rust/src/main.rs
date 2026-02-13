@@ -1,7 +1,8 @@
-use axum::{ extract::State, routing::get, Json, Router };
+use axum::{ routing::get, Json, Router };
 use serde_json::Value;
 use std::sync::Arc;
 use tower_http::services::ServeDir;
+use std::env;
 
 struct AppState {
     _content: Value,
@@ -45,7 +46,8 @@ async fn get_content() -> Json<Value> {
             }
         }
         Err(e) => {
-            eprintln!("Error reading content.json: {}", e);
+            let cwd = env::current_dir().unwrap_or_default();
+            eprintln!("Error reading content.json: {} (CWD: {:?})", e, cwd);
             Json(serde_json::json!({ "error": "File not found" }))
         }
     }
