@@ -9,11 +9,8 @@ struct AppState {
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    // Load content.json
-    let content_str = std::fs::read_to_string("assets/content.json")?;
-    let content: Value = serde_json::from_str(&content_str)?;
-
-    let app_state = Arc::new(AppState { _content: content });
+    // Shared state (no longer holds content in memory)
+    let app_state = Arc::new(AppState { _content: Value::Null });
 
     // Build our application with a route
     let app = Router::new()
@@ -35,6 +32,21 @@ async fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-async fn get_content(State(state): State<Arc<AppState>>) -> Json<Value> {
-    Json(state._content.clone())
+async fn get_content() -> Json<Value> {
+    println!("API Request received: /api/content");
+    match std::fs::read_to_string("assets/content.json") {
+        Ok(content_str) => {
+            match serde_json::from_str(&content_str) {
+                Ok(content) => Json(content),
+                Err(e) => {
+                    eprintln!("Error parsing content.json: {}", e);
+                    Json(serde_json::json!({ "error": "Invalid JSON" }))
+                }
+            }
+        }
+        Err(e) => {
+            eprintln!("Error reading content.json: {}", e);
+            Json(serde_json::json!({ "error": "File not found" }))
+        }
+    }
 }
