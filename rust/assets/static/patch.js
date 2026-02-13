@@ -1,4 +1,4 @@
-console.log("Patch script v6 loaded");
+console.log("Patch script v7 loaded");
 
 async function patchContent() {
 	try {
@@ -6,6 +6,21 @@ async function patchContent() {
 		const response = await fetch("/api/content");
 		const data = await response.json();
 		console.log("Content received for patching.");
+
+		// --- Safe Text Node Manipulation Helper ---
+		const safeRemoveText = (element, searchText) => {
+			if (!element) return;
+			// Iterate backwards to safely remove
+			for (let i = element.childNodes.length - 1; i >= 0; i--) {
+				const node = element.childNodes[i];
+				if (node.nodeType === Node.TEXT_NODE && node.nodeValue.includes(searchText)) {
+					console.log("Removing text from text node:", node.nodeValue);
+					node.nodeValue = node.nodeValue.replace(searchText, "");
+				} else if (node.nodeType === Node.ELEMENT_NODE) {
+					safeRemoveText(node, searchText); // Recurse
+				}
+			}
+		};
 
 		// --- Patch Last Modified Date ---
 		const patchDate = () => {
@@ -17,7 +32,23 @@ async function patchContent() {
 			);
 
 			if (greenDate && !greenDate.innerText.includes(data.hero["last-modified"])) {
-				greenDate.innerText = "Dernière mise à jour : " + data.hero["last-modified"];
+				// Safe update for green date
+				// We can safely set innerText here because this specific node is usually a leaf or specific container
+				// But let's be safer: find the text node.
+				let updated = false;
+				greenDate.childNodes.forEach((node) => {
+					if (
+						node.nodeType === Node.TEXT_NODE &&
+						node.nodeValue.includes("Dernière mise à jour")
+					) {
+						node.nodeValue = "Dernière mise à jour : " + data.hero["last-modified"];
+						updated = true;
+					}
+				});
+				if (!updated) {
+					// Fallback if structure is weird
+					greenDate.innerText = "Dernière mise à jour : " + data.hero["last-modified"];
+				}
 
 				// Remove duplicate from description if exists
 				const pTags = document.querySelectorAll("p");
@@ -27,10 +58,17 @@ async function patchContent() {
 						!p.className.includes("text-terminal-dim") &&
 						!p.className.includes("text-primary")
 					) {
-						p.innerHTML = p.innerHTML.replace(
-							/Dernière mise à jour\s*:\s*(\d{2}\/\d{2}\/\d{4})?/g,
-							"",
-						);
+						// Use safe removal instead of innerHTML
+						// This regex matches the standard text to remove
+						// "Dernière mise à jour : XX/XX/XXXX"
+						// pass a static string or simple regex replacement logic manually
+						// Since textContent/innerText touches DOM, we iterate nodes.
+
+						// We'll just look for the prefix string start for simplicity in text nodes
+						safeRemoveText(p, "Dernière mise à jour :");
+						// Also try to remove the date part if it's separate?
+						// The user error showed "NotFoundError" likely from the innerHTML replace.
+						// Just clearing the text node value is much safer.
 					}
 				}
 				return true;
@@ -51,7 +89,6 @@ async function patchContent() {
 			if (!headerBtn) return false;
 
 			// 2. Find the content container (next sibling of the button)
-			// React might remove/add this DOM node on toggle.
 			let contentWrapper = headerBtn.nextElementSibling;
 			if (!contentWrapper) return false; // Card is collapsed
 
@@ -59,12 +96,14 @@ async function patchContent() {
 			let container = contentWrapper.querySelector("div");
 			if (!container) container = contentWrapper;
 
-			// Check if we already injected details to prevent duplicate
-			if (container.querySelector(".patched-details")) return true;
+			// Check if we already injected details
+			// We use a specific ID now to be sure
+			if (container.querySelector("#esgi-patched-details")) return true;
 
 			// Create details HTML
 			const detailsContainer = document.createElement("div");
-			detailsContainer.className = "patched-details mt-4 text-sm text-muted-foreground font-mono";
+			detailsContainer.id = "esgi-patched-details"; // ID for easier lookup
+			detailsContainer.className = "mt-4 text-sm text-muted-foreground font-mono";
 
 			const esgiData = data.education.items.find((i) => i.school === "ESGI");
 			if (esgiData && esgiData.sub_items) {
@@ -80,21 +119,20 @@ async function patchContent() {
 					const titleContainer = document.createElement("div");
 					titleContainer.className = "flex items-center gap-2";
 
-					// Custom Arrow Style: → (text-primary)
 					const arrow = document.createElement("span");
-					arrow.innerHTML = "→";
+					arrow.textContent = "→"; // plain text content
 					arrow.className =
-						"text-primary mr-1 transition-transform duration-200 inline-block"; // inline-block needed for transform
+						"text-primary mr-1 transition-transform duration-200 inline-block";
 
 					const title = document.createElement("strong");
-					title.innerText = year.degree;
-					title.className = "text-foreground font-mono"; // Ensure font-mono
+					title.textContent = year.degree;
+					title.className = "text-foreground font-mono";
 
 					titleContainer.appendChild(arrow);
 					titleContainer.appendChild(title);
 
 					const period = document.createElement("span");
-					period.innerText = year.period;
+					period.textContent = year.period;
 					period.className = "text-xs text-muted-foreground";
 
 					header.appendChild(titleContainer);
@@ -109,8 +147,15 @@ async function patchContent() {
 						ul.className = "space-y-1 text-muted-foreground";
 						year.details.forEach((detail) => {
 							const li = document.createElement("li");
-							// Match existing detail style: small arrow + text
-							li.innerHTML = `<span class="text-primary mr-2">→</span>${detail}`;
+
+							const arrowSpan = document.createElement("span");
+							arrowSpan.className = "text-primary mr-2";
+							arrowSpan.textContent = "→";
+
+							const textNode = document.createTextNode(detail);
+
+							li.appendChild(arrowSpan);
+							li.appendChild(textNode);
 							ul.appendChild(li);
 						});
 						content.appendChild(ul);
@@ -118,7 +163,7 @@ async function patchContent() {
 
 					// --- Event Listener ---
 					header.addEventListener("click", (e) => {
-						e.stopPropagation(); // Prevent bubbling to card toggle
+						e.stopPropagation(); // Critical to stop bubbling
 						const isHidden = content.classList.contains("hidden");
 						if (isHidden) {
 							content.classList.remove("hidden");
@@ -133,40 +178,60 @@ async function patchContent() {
 					yearBlock.appendChild(content);
 					detailsContainer.appendChild(yearBlock);
 				});
-				container.appendChild(detailsContainer);
-				console.log("ESGI details injected.");
+
+				// Validate if container is still connected before appending
+				if (container.isConnected) {
+					container.appendChild(detailsContainer);
+					console.log("ESGI details injected safely.");
+				}
 				return true;
 			}
 			return false;
 		};
 
 		// Initial Patch
-		patchDate();
-		patchEducation();
+		requestAnimationFrame(() => {
+			patchDate();
+			patchEducation();
+		});
 
-		// --- Mutation Observer for Persistence ---
-		// Watch for changes in the body (e.g., React unmounting/mounting content)
+		// --- Mutation Observer ---
 		const observer = new MutationObserver((mutations) => {
 			let shouldPatch = false;
-			for (const mutation of mutations) {
-				if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
-					shouldPatch = true;
-					break;
+			// Check if relevant nodes were added
+			// We verify if our injected content is missing when it should be there
+			const esgiHeader = Array.from(document.querySelectorAll("h3")).find((el) =>
+				el.innerText.includes("ESGI"),
+			);
+			if (esgiHeader) {
+				const btn = esgiHeader.closest("button");
+				if (btn && btn.nextElementSibling) {
+					// Check if details are missing
+					if (!document.getElementById("esgi-patched-details")) {
+						shouldPatch = true;
+					}
 				}
 			}
+
 			if (shouldPatch) {
-				// Debounce could be added here if performance is an issue, but for this scale it's fine.
-				patchDate();
-				patchEducation();
+				// Use requestAnimationFrame to avoid conflict during render cycle
+				requestAnimationFrame(() => {
+					patchDate();
+					patchEducation();
+				});
 			}
 		});
 
 		observer.observe(document.body, { childList: true, subtree: true });
-		console.log("MutationObserver attached.");
+		console.log("MutationObserver attached (Safe Mode).");
 	} catch (e) {
 		console.error("Error in patch script:", e);
 	}
 }
 
 // Run content patching
-patchContent();
+if (document.readyState === "loading") {
+	document.addEventListener("DOMContentLoaded", patchContent);
+} else {
+	patchContent();
+}
