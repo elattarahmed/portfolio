@@ -17,7 +17,7 @@ async fn main() -> anyhow::Result<()> {
         .route("/api/content", get(get_content))
         .route_service(
             "/projets-annuels",
-            tower_http::services::ServeFile::new("assets/static/index.html")
+            tower_http::services::ServeFile::new("assets/static/wip.html")
         )
         .route_service("/style.css", tower_http::services::ServeFile::new("assets/style.css"))
         .nest_service("/assets", ServeDir::new("assets"))
