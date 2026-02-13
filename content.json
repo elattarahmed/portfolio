@@ -119,7 +119,7 @@
             },
             {
                 "title": "VPN Site à Site",
-                "difficulty": "Avancé",
+                "difficulty": "Intermédiaire",
                 "description": "Mise en place d'un VPN IPSec HA avec PFSense.",
                 "details": [
                     "Configuration IPSec avec HA (High Availability)",
@@ -129,7 +129,7 @@
             },
             {
                 "title": "Audit Wifi",
-                "difficulty": "Avancé",
+                "difficulty": "Simple",
                 "description": "Tests de pénétration Wifi (WEP, WPA2, WPS).",
                 "details": [
                     "Crack de mots de passe (WEP, WPA2, WPS)",
@@ -139,7 +139,7 @@
             },
             {
                 "title": "Gestion Accessoires (Publicis)",
-                "difficulty": "Avancé",
+                "difficulty": "Intermédiaire",
                 "description": "Outil de gestion de stocks en RUST.",
                 "details": [
                     "Développement backend en Rust",
@@ -159,7 +159,7 @@
             },
             {
                 "title": "EcoDeli",
-                "difficulty": "Débutant",
+                "difficulty": "Avancé",
                 "description": "Projet annuel : Application web Symfony.",
                 "details": [
                     "Framework Symfony avec Doctrine ORM",
@@ -169,7 +169,7 @@
             },
             {
                 "title": "Portfolio",
-                "difficulty": "Avancé",
+                "difficulty": "Simple",
                 "description": "Site personnel self-hosted (Rust/Apache2).",
                 "details": [
                     "Backend Rust (Axum, Tera)",
@@ -180,7 +180,7 @@
             },
              {
                 "title": "OTA Server",
-                "difficulty": "Intermédiaire",
+                "difficulty": "Avancé",
                 "description": "Serveur de mise à jour firmware OTA.",
                 "details": [
                     "Distribution de firmwares pour microcontrôleurs",
