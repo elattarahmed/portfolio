@@ -1,4 +1,4 @@
-use axum::{ routing::get, Json, Router, response::IntoResponse };
+use axum::{ routing::get, Json, Router };
 use serde_json::Value;
 use std::sync::Arc;
 use tower_http::services::ServeDir;
@@ -33,29 +33,22 @@ async fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-async fn get_content() -> impl axum::response::IntoResponse {
+async fn get_content() -> Json<Value> {
     println!("API Request received: /api/content");
-
-    let headers = [
-        ("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate"),
-        ("Pragma", "no-cache"),
-        ("Expires", "0"),
-    ];
-
     match std::fs::read_to_string("assets/content.json") {
         Ok(content_str) => {
-            match serde_json::from_str::<Value>(&content_str) {
-                Ok(content) => (headers, Json(content)).into_response(),
+            match serde_json::from_str(&content_str) {
+                Ok(content) => Json(content),
                 Err(e) => {
                     eprintln!("Error parsing content.json: {}", e);
-                    (headers, Json(serde_json::json!({ "error": "Invalid JSON" }))).into_response()
+                    Json(serde_json::json!({ "error": "Invalid JSON" }))
                 }
             }
         }
         Err(e) => {
             let cwd = env::current_dir().unwrap_or_default();
             eprintln!("Error reading content.json: {} (CWD: {:?})", e, cwd);
-            (headers, Json(serde_json::json!({ "error": "File not found" }))).into_response()
+            Json(serde_json::json!({ "error": "File not found" }))
         }
     }
 }
