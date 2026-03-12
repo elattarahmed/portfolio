@@ -29,7 +29,7 @@ async fn main() -> anyhow::Result<()> {
             SetResponseHeaderLayer::overriding(
                 HeaderName::from_static("content-security-policy"),
                 HeaderValue::from_static(
-                    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'"
+                    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'"
                 )
             )
         )
