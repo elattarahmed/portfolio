@@ -38,6 +38,12 @@ async fn main() -> anyhow::Result<()> {
                 HeaderName::from_static("x-frame-options"),
                 HeaderValue::from_static("DENY")
             )
+        )
+        .layer(
+            SetResponseHeaderLayer::overriding(
+                HeaderName::from_static("cross-origin-opener-policy"),
+                HeaderValue::from_static("same-origin")
+            )
         );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8443").await?;
