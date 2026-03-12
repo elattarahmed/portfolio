@@ -29,7 +29,18 @@ async fn main() -> anyhow::Result<()> {
             SetResponseHeaderLayer::overriding(
                 HeaderName::from_static("content-security-policy"),
                 HeaderValue::from_static(
-                    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'"
+                    "default-src 'self'; \
+                     script-src 'self' \
+                       'sha256-iVxNn9jlAMRMtgPwHpEQV1nigP0c2ZNGCWZWccDM9Vs=' \
+                       https://static.cloudflareinsights.com; \
+                     style-src 'self' \
+                       'unsafe-hashes' \
+                       'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \
+                       'sha256-Od9mHMH7x2G6QuoV3hsPkDCwIyqbg2DX3F5nLeCYQBc=' \
+                       https://fonts.googleapis.com; \
+                     img-src 'self' data:; \
+                     font-src 'self' https://fonts.gstatic.com; \
+                     connect-src 'self' https://cloudflareinsights.com"
                 )
             )
         )
