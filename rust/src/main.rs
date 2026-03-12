@@ -30,9 +30,7 @@ async fn main() -> anyhow::Result<()> {
                 HeaderName::from_static("content-security-policy"),
                 HeaderValue::from_static(
                     "default-src 'self'; \
-                     script-src 'self' \
-                       'sha256-iVxNn9jlAMRMtgPwHpEQV1nigP0c2ZNGCWZWccDM9Vs=' \
-                       https://static.cloudflareinsights.com; \
+                     script-src 'self'; \
                      style-src 'self' \
                        'unsafe-hashes' \
                        'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \
