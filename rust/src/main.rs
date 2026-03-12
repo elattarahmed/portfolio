@@ -2,6 +2,8 @@ use axum::{ routing::get, Json, Router, response::IntoResponse };
 use serde_json::Value;
 use std::sync::Arc;
 use tower_http::services::ServeDir;
+use tower_http::set_header::SetResponseHeaderLayer;
+use axum::http::{ HeaderName, HeaderValue };
 use std::env;
 
 struct AppState {
@@ -10,10 +12,8 @@ struct AppState {
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    // Shared state (no longer holds content in memory)
     let app_state = Arc::new(AppState { _content: Value::Null });
 
-    // Build our application with a route
     let app = Router::new()
         .route("/api/content", get(get_content))
         .route_service(
@@ -24,7 +24,15 @@ async fn main() -> anyhow::Result<()> {
         .nest_service("/assets", ServeDir::new("assets"))
         .nest_service("/tech-journey", ServeDir::new("assets/tech-journey"))
         .fallback_service(ServeDir::new("assets/static"))
-        .with_state(app_state);
+        .with_state(app_state)
+        .layer(
+            SetResponseHeaderLayer::overriding(
+                HeaderName::from_static("content-security-policy"),
+                HeaderValue::from_static(
+                    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'"
+                )
+            )
+        );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8443").await?;
     println!("Listening on http://0.0.0.0:8443");
