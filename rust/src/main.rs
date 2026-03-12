@@ -32,6 +32,12 @@ async fn main() -> anyhow::Result<()> {
                     "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'"
                 )
             )
+        )
+        .layer(
+            SetResponseHeaderLayer::overriding(
+                HeaderName::from_static("x-frame-options"),
+                HeaderValue::from_static("DENY")
+            )
         );
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8443").await?;
