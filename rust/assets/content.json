@@ -1,210 +1,287 @@
 {
-    "header": {
-        "logo": "Ahmed El Attar",
-        "nav": [
-            { "text": "Accueil", "link": "#home" },
-            { "text": "À propos", "link": "#about" },
-            { "text": "Expérience", "link": "#experience" },
-            { "text": "Formation", "link": "#education" },
-            { "text": "Projets", "link": "#projects" },
-            { "text": "Contact", "link": "#contact" }
-        ]
-    },
-    "hero": {
-        "greeting": "Bonjour, je suis<br>",
-        "name": "Ahmed El Attar",
-        "title": "Alternant Sécurité Informatique - Admin Système et Réseaux",
-        "description": "Étudiant passionné de cybersécurité et d'administration système. Cette page est hebergée sur mon propre serveur. Dernière mise à jour : ",
-		"last-modified": "16/02/2026",
-        "buttonText": "Voir mes projets",
-        "buttonLink": "#projects"
-    },
-    "about": {
-        "title": "À propos de moi",
-        "description": "Je suis actuellement en 3ème année de Bachelor Sécurité Informatique à l'ESGI. Passionné par la cybersécurité, l'administration système et le développement, je cherche constamment à approfondir mes connaissances à travers des projets concrets et mon alternance."
-    },
-    "education": {
-        "title": "Formation",
-        "items": [
-            {
-                "school": "ESGI",
-                "degree": "Bachelor Sécurité Informatique",
-                "period": "2023 – 2026",
-                "details": [
-                    "École Supérieure de Génie Informatique",
-                    "Spécialisation en Cybersécurité, Administration Système & Réseaux"
-                ],
-                "sub_items": [
-                    {
-                        "degree": "3ème Année - Spécialisation Sécurité",
-                        "period": "2025 – 2026",
-                        "details": [
-                            "Sécurité Avancée : Cryptographie, Sécurité Wifi, IDS/IPS, PenTest, Exploit Dev",
-                            "Développement : Python (Scripting sécu), RUST (Système), Assembleur",
-                            "Projets : Audit de code, CTF, Développement d'outils de sécurité"
-                        ]
-                    },
-                    {
-                        "degree": "2ème Année - Tronc Commun",
-                        "period": "2024 – 2025",
-                        "details": [
-                            "Système & Réseaux : Virtualisation (ProxMox, VMware), AWS, Azure, Windows Server, Linux Admin",
-                            "Développement : Java, Python, C, Symfony (PHP), Doctrine ORM",
-                            "Sécurité : Initiation OSINT, CTF, Cryptographie basique"
-                        ]
-                    },
-                    {
-                        "degree": "1ère Année - Tronc Commun",
-                        "period": "2023 – 2024",
-                        "details": [
-                            "Bases de l'informatique : Algorithmie (C), HTML/CSS/JS, PHP",
-                            "Réseaux : Cisci Packet Tracer, Modèle OSI, Adressage IP",
-                            "Bases de données : SQL, Oracle, Modélisation (MCD/MLD)",
-                            "Mathématiques appliquées : Binaire, Hexadécimal, Logique booléenne"
-                        ]
-                    }
-                ]
-            },
-            {
-                "school": "UPJV",
-                "degree": "L1 Maths-Info",
-                "period": "2022 – 2023",
-                "details": [
-                    "Mathématiques : Algèbre linéaire, Matrices, Probabilités et Statistiques",
-                    "Informatique : Programmation C, Microcontrôleurs (Arduino), Web (HTML/CSS)"
-                ]
-            }
-        ]
-    },
-    "experience": {
-        "title": "Expériences Professionnelles",
-        "items": [
-            {
-                "company": "Publicis ReSources",
-                "role": "Technicien Support de Proximité",
-                "period": "Juin 2024 – Sept. 2026",
-                "description": "Support utilisateur, Gestion d'infrastructure et Projets.",
-                "details": [
-                    "Gestion d'infrastructure : Administration de 4000+ comptes Active Directory / Entra ID",
-                    "Support : Résolution de 50+ tickets/incidents par semaine via Service Now",
-                    "Onboarding & Sécurité : Accueil des nouveaux arrivants (~15/semaine) et prévention sécurité",
-                    "Projet : Développement d'une application web de gestion de stock d'accessoires sécurisé"
-                ]
-            },
-            {
-                "company": "Alepia",
-                "role": "Stage Technicien N1",
-                "period": "Nov 2023 – Déc. 2023",
-                "description": "Support utilisateur N1 et maintenance matérielle.",
-                "details": [
-                    "Support utilisateur de niveau 1",
-                    "Maintenance Hardware (remplacement de composants) et Câble management",
-                    "Préparation de postes, logiciels et brassage réseau"
-                ]
-            }
-        ]
-    },
-    "projects": {
-        "title": "Projets & Expériences Annexes",
-        "items": [
-            {
-                "title": "HomeLab",
-                "difficulty": "Intermédiaire",
-                "description": "Administration d'un serveur ProxMox personnel.",
-                "details": [
-                    "Hébergement de machines virtuelles et conteneurs (LXC/Docker)",
-                    "Gestion réseau et VLANs",
-                    "Sauvegardes et monitoring"
-                ]
-            },
-            {
-                "title": "VPN Site à Site",
-                "difficulty": "Intermédiaire",
-                "description": "Mise en place d'un VPN IPSec HA avec PFSense.",
-                "details": [
-                    "Configuration IPSec avec HA (High Availability)",
-                    "Utilisation de VIP et CARP pour la redondance",
-                    "Tests de basculement et résilience"
-                ]
-            },
-            {
-                "title": "Audit Wifi",
-                "difficulty": "Simple",
-                "description": "Tests de pénétration Wifi (WEP, WPA2, WPS).",
-                "details": [
-                    "Crack de mots de passe (WEP, WPA2, WPS)",
-                    "Mise en place de Rogue AP (Evil Twin)",
-                    "Capture et analyse de paquets"
-                ]
-            },
-            {
-                "title": "Gestion Accessoires (Publicis)",
-                "difficulty": "Intermédiaire",
-                "description": "Outil de gestion de stocks en RUST.",
-                "details": [
-                    "Développement backend en Rust",
-                    "Gestion de base de données performante",
-                    "Interface pour le suivi des prêts et stocks"
-                ]
-            },
-            {
-                "title": "My3SIB",
-                "difficulty": "Intermédiaire",
-                "description": "Intranet alternatif utilisant l'API MyGes.",
-                "details": [
-                    "Backend Laravel et Frontend ReactJS",
-                    "Consommation de l'API publique MyGes",
-                    "Amélioration de l'UX étudiante"
-                ]
-            },
-            {
-                "title": "EcoDeli",
-                "difficulty": "Avancé",
-                "description": "Projet annuel : Application web Symfony.",
-                "details": [
-                    "Framework Symfony avec Doctrine ORM",
-                    "Conteneurisation Docker",
-                    "Sécurisation SSL avec Let's Encrypt"
-                ]
-            },
-            {
-                "title": "Portfolio",
-                "difficulty": "Simple",
-                "description": "Site personnel self-hosted (Rust/Apache2).",
-                "details": [
-                    "Backend Rust (Axum, Tera)",
-                    "Reverse Proxy Apache2",
-                    "Tunneling Cloudflared pour l'exposition sécurisée",
-                    "Hard links pour la synchro des assets"
-                ]
-            },
-            {
-                "title": "OTA Server",
-                "difficulty": "Avancé",
-                "description": "Serveur de mise à jour firmware OTA.",
-                "details": [
-                    "Distribution de firmwares pour microcontrôleurs",
-                    "Gestion des versions et déploiements",
-                    "Sécurisation des transferts"
-                ]
-            }
-        ]
-    },
-    "skills": {
-        "title": "Compétences & Intérêts",
-        "items": [
-            "Langues : Anglais (C1/B2), Arabe (B1), Hongrois (B1)",
-            "Leadership & Com : Ambassadeur ESGI, Tutorat",
-            "Apprentissage & Loisirs : ArchLinux, HTB, Boxe Anglaise, Échecs"
-        ]
-    },
-    "contact": {
-        "title": "Contact",
-        "description": "N'hésitez pas à me contacter pour toute collaboration.",
-        "buttonText": "Me contacter",
-        "buttonLink": "mailto:mr.ahmed.elattar.pro@gmail.com"
-    },
-    "footer": {
-        "text": "&copy; 2026 Ahmed El Attar. Tous droits réservés."
-    }
+	"header": {
+		"logo": "Ahmed El Attar",
+		"nav": [
+			{
+				"text": "Accueil",
+				"link": "#home"
+			},
+			{
+				"text": "À propos",
+				"link": "#about"
+			},
+			{
+				"text": "Expérience",
+				"link": "#experience"
+			},
+			{
+				"text": "Formation",
+				"link": "#education"
+			},
+			{
+				"text": "Projets",
+				"link": "#projects"
+			},
+			{
+				"text": "Recommandations",
+				"link": "#recommendations"
+			},
+			{
+				"text": "Contact",
+				"link": "#contact"
+			}
+		]
+	},
+	"hero": {
+		"greeting": "Bonjour, je suis<br>",
+		"name": "Ahmed El Attar",
+		"title": "Alternant Sécurité Informatique - Admin Système et Réseaux",
+		"description": "Le meilleur alternant que vous pourriez avoir, et de très loin ! Dernière mise à jour : ",
+		"last-modified": "16/03/2026",
+		"buttonText": "Voir mes projets",
+		"buttonLink": "#projects"
+	},
+	"about": {
+		"title": "Qui je suis ?",
+		"description": "Étudiant en 3ème année de Bachelor Sécurité Informatique à l'ESGI. J'aime découvrir et apprendre comment fonctionnent les choses, c'est ce qui m'a poussé à m'orienter vers l'informatique et plus particulièrement vers la cybersécurité."
+	},
+	"education": {
+		"title": "Formation",
+		"items": [
+			{
+				"school": "ESGI",
+				"degree": "Mastère Sécurité Informatique",
+				"period": "2026 – 2028",
+				"description": "École Supérieure de Génie Informatique",
+				"sub_items": [
+					{
+						"degree": "5ème Année - Spécialisation Sécurité",
+						"period": "2027 – 2028",
+						"details": [
+							"Sécurité Avancée : Red & Blue Team, Analyses Malwares, CTI, Drones, IAM, AUDIT & PenTest, Sécurité Cloud, SCADA, PWN, Hackaton",
+							"GRC : ISO27001, EBIOS-RM, DORA & NIS2, Droit éthique"
+						]
+					},
+					{
+						"degree": "4ème Année - Spécialisation Sécurité",
+						"period": "2026 – 2027",
+						"details": [
+							"Développement : Assembleur, RUST, Python, Cryptographie",
+							"Sécurité Avancé : Blue Team (SIEM & IDS), Infra PKI, Forensic, Reverse, Low-Level Security, IOT",
+							"Autres : OSINT & Social Engineering, RFID & Radio Frequency"
+						]
+					}
+				]
+			},
+			{
+				"school": "ESGI",
+				"degree": "Bachelor Sécurité Informatique",
+				"period": "2023 – 2026",
+				"description": "École Supérieure de Génie Informatique",
+				"sub_items": [
+					{
+						"degree": "3ème Année - Spécialisation Cybersécurité",
+						"period": "2025 – 2026",
+						"details": [
+							"Sécurité Avancée : Cryptographie, Sécurité Wifi, IDS/IPS, PenTest, Exploit Dev, Cryptographie, Wifi, Python, RUST, Assembleur, PenTest, Exploit, Crochetage, IDS",
+							"Annexe : Linux Administration (Niveau LPIC-1), Anglais (TOEIC), Cyber Éthique, Gestions de Projets "
+						]
+					},
+					{
+						"degree": "2ème Année - Tronc Commun",
+						"period": "2024 – 2025",
+						"details": [
+							"Réseaux : Virtualisation (VMware), Eve-Ng, OPNSense",
+							"Développement : Java, Assembleur, C",
+							"Sécurité : Initiation OSINT, CTF, Cryptographie, Wifi",
+							"Cloud & Serveurs : Azure, AWS, Windows Server, Linux Admin"
+						]
+					},
+					{
+						"degree": "1ère Année - Tronc Commun",
+						"period": "2023 – 2024",
+						"details": [
+							"Développement : Langage C, Algorithmie, JS, PHP",
+							"Réseaux : Cisco PT, Modèle OSI & Adressage IP",
+							"Bases de données : SQL, Oracle, MCD/MLD",
+							"Mathématiques appliquées : Binaire, Suites, PGCD"
+						]
+					}
+				]
+			},
+			{
+				"school": "UPJV",
+				"degree": "Licence",
+				"period": "2022 – 2023",
+				"description": "Université de Picardie Jules Verne",
+				"sub_items": [
+					{
+						"degree": "L1 Maths-Info",
+						"period": "2022 – 2023",
+						"details": [
+							"Mathématiques : Algèbre linéaire, Matrices, Probabilités et Statistiques",
+							"Informatique : Programmation C, Microcontrôleurs (Arduino), Web (HTML/CSS)"
+						]
+					}
+				]
+			}
+		]
+	},
+	"experience": {
+		"title": "Expériences Professionnelles",
+		"items": [
+			{
+				"company": "Publicis ReSources",
+				"role": "Technicien Support de Proximité",
+				"period": "Juin 2024 – Sept. 2026",
+				"description": "Support utilisateur, Gestion d'infrastructure et Projets.",
+				"details": [
+					"Développement Interne : Gestionnaire d'inventaire des accessoires (Détails dans les projets), Automatisation des renouvellement d'appareils utilisateurs.",
+					"Gestion d'infrastructure : Administration de 4000+ comptes Active Directory / Entra ID",
+					"Support : Résolution de 50+ tickets/incidents par semaine via Service Now",
+					"Onboarding & Sécurité : Accueil des nouveaux arrivants (~15/semaine) et prévention sécurité"
+				]
+			},
+			{
+				"company": "Alepia",
+				"role": "Stage Technicien N1",
+				"period": "Nov 2023 – Déc. 2023",
+				"description": "Support utilisateur N1 et maintenance matérielle.",
+				"details": [
+					"Support utilisateur de niveau 1",
+					"Maintenance Hardware (remplacement de composants) et Câble management",
+					"Préparation de postes, logiciels et brassage réseau"
+				]
+			}
+		]
+	},
+	"projects": {
+		"title": "Projets & Expériences Annexes",
+		"items": [
+			{
+				"title": "HomeLab",
+				"difficulty": "Intermédiaire",
+				"description": "Création et Administration d'un ProxMox en constante évolution.",
+				"details": [
+					"Hébergement de machines virtuelles et conteneurs (LXC/Docker)",
+					"Administration réseau",
+					"Sauvegardes, monitoring et gestion de logs",
+					"Protection contre intrusions : IDS et IPS"
+				]
+			},
+			{
+				"title": "VPN Site à Site",
+				"difficulty": "Simple",
+				"description": "Projet d'école : Mettre en place un VPN IPSec via PFSense",
+				"details": [
+					"HA : Configuration d'une redondance de configurations réseaux et de règles Pare-Feu",
+					"Basculement automatique : Mise en place de liens VIP CARP",
+					"VPN Redondant : Création d'un VPN capable de persister malgré la panne d'un routeur."
+				],
+				"tools": "PFSense, VMWare"
+			},
+			{
+				"title": "Sécurité Wifi",
+				"difficulty": "Simple",
+				"description": "Projet Pédagogique : Rogue AP et Pénétration Wifi.",
+				"details": [
+					"Pénétration : Crackage de mots de passe Wifi (WEP, WPA/WPA2, WPS)",
+					"Rogue AP : Création d'un AP malveillant afin de récolter les communications des utilisateurs connectés",
+					"Analyse : Capture et analyse de paquets via WireShark"
+				],
+				"tools": "Aircrack-ng, WireShark, Script Shell",
+				"link": "https://github.com/RafaLe0/RogueAP"
+			},
+			{
+				"title": "Gestion Accessoires (Publicis)",
+				"difficulty": "Intermédiaire",
+				"description": "Projet Entreprise : Outil de gestion et de demandes d'accessoires",
+				"details": [
+					"Backend : Développement backend en Rust",
+					"Frontend : Développement frontend en VueJs",
+					"Interfaces : Admin, Utilisateurs, Chef d'agences"
+				],
+				"tools": "Rust, VueJs, Docker"
+			},
+			{
+				"title": "My3SIB",
+				"difficulty": "Avancé",
+				"description": "Intranet alternatif utilisant l'API publique MyGes.",
+				"details": [
+					"Backend RUST et Frontend ReactJS",
+					"Consommation de l'API publique MyGes",
+					"Amélioration de l'UX étudiante",
+					"Cloud pour stocker les supports de cours",
+					"Canaux de discussions intégrés (Discord like)"
+				],
+				"link": "EN COURS DE DÉVELOPPEMENT"
+			},
+			{
+				"title": "EcoDeli",
+				"difficulty": "Avancé",
+				"description": "Projet Annuel 2ème année : Application web Symfony + Infra réseau.",
+				"details": [
+					"Web : Symfony, Doctrine ORM, API REST Natif, SSL (Let's Encrypt)",
+					"Réseau & Système: IPSEC over GRE, Windows Serveur, OSPF",
+					"Android : Lecture et Génération QrCode/NFC",
+					"Allez voir le schéma infra disponible sur le github"
+				],
+				"link": "https://github.com/matxsu/Ecodeli"
+			},
+			{
+				"title": "OTA Server",
+				"difficulty": "Avancé",
+				"description": "Projet Annuel 3ème année : Serveur de mise à jour firmware objets IOT.",
+				"details": [
+					"Initialisation : Connexion VPN Wireguard, Détection des IOT, Check des mises à jours",
+					"Process : Parc de test, Envoi des mises à jours (avec signature serveur), Check install et Rollback, Envoi des logs",
+					"Finalisation : Stockage des mise à jour sur serveur, déploiement général",
+					"Sécurité : Infra PKI, CheckSum, Signature serveur, Dual-Park Partitioning, TARS"
+				],
+				"link": "https://docs.google.com/document/d/15yNj1Inqb1bttLFWeOmM9s18oCui5Qen_id08QQieOw/edit?tab=t.lochv013k5rn#heading=h.cjyahjj03s7k"
+			}
+		]
+	},
+	"skills": {
+		"title": "Compétences & Intérêts",
+		"items": [
+			"Langues : Anglais (C1), Arabe (B1), Hongrois (B1)",
+			"Leadership : Ambassadeur ESGI, Tutorat",
+			"Qualité : Curiosité, Productivité, Rigueur, Esprit d'équipe, Adaptabilité",
+			"Loisirs : Fitness, Boxe Anglaise, Échecs, Course à pied, Jeux Vidéos",
+			"Apprentissage : ArchLinux, Root-Me, HTB, IA"
+		]
+	},
+	"recommendations": {
+		"title": "Recommandations",
+		"items": [
+			{
+				"name": "KIM-LY KONG",
+				"role": "Directrice",
+				"company": "ALEPIA",
+				"text": "Ahmed est un jeune plein de talents, curieux et très motivé. Je le recommande fortement."
+			},
+			{
+				"name": "ANANDHA RANGSI",
+				"role": "Responsable de l'équipe IT (LionTech)",
+				"company": "Publicis ReSources",
+				"text": "Tout au long de son alternance, il a été un élément sérieux et motivé. Il n'hésite pas à proposer des solutions et à prendre des initiatives. Ce serait une erreur de passer à côté."
+			},
+			{
+				"name": "XAVIER CANAPLE",
+				"role": "Technicien Support",
+				"company": "Publicis ReSources",
+				"text": "J'ai toujours pu compter sur Ahmed. Il est très compétent et fiable. Toute l'équipe l'apprécie et voit sa valeur ajoutée au quotidien."
+			}
+		]
+	},
+	"contact": {
+		"title": "Contact",
+		"description": "N'hésitez pas à me contacter pour toute collaboration ou question !",
+		"buttonText": "Me contacter",
+		"buttonLink": "mailto:mr.ahmed.elattar.pro@gmail.com"
+	},
+	"footer": {
+		"text": "&copy; 2026 Ahmed El Attar. Tous droits réservés."
+	}
 }

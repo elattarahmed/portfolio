@@ -1,28 +1,26 @@
-use axum::{ routing::get, Json, Router, response::IntoResponse };
+use axum::{ extract::State, response::Html, routing::get, Router };
 use serde_json::Value;
 use std::sync::Arc;
-use tower_http::services::ServeDir;
+use tower_http::services::{ ServeDir, ServeFile };
 use tower_http::set_header::SetResponseHeaderLayer;
 use axum::http::{ HeaderName, HeaderValue };
-use std::env;
+use tera::Tera;
 
 struct AppState {
-    _content: Value,
+    tera: Tera,
 }
+
+const IP_ADDRESS: &str = "0.0.0.0:8443";
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let app_state = Arc::new(AppState { _content: Value::Null });
+    let tera = Tera::new("templates/**/*.html")?;
+    let app_state = Arc::new(AppState { tera });
 
     let app = Router::new()
-        .route("/api/content", get(get_content))
-        .route_service(
-            "/projets-annuels",
-            tower_http::services::ServeFile::new("assets/static/wip.html")
-        )
-        .route_service("/style.css", tower_http::services::ServeFile::new("assets/style.css"))
-        .nest_service("/assets", ServeDir::new("assets"))
-        .nest_service("/tech-journey", ServeDir::new("assets/tech-journey"))
+        .route("/", get(render_index))
+        .route("/projets-annuels", get(render_wip))
+        .route_service("/style.css", ServeFile::new("assets/style.css"))
         .fallback_service(ServeDir::new("assets/static"))
         .with_state(app_state)
         .layer(
@@ -30,15 +28,11 @@ async fn main() -> anyhow::Result<()> {
                 HeaderName::from_static("content-security-policy"),
                 HeaderValue::from_static(
                     "default-src 'self'; \
-                     script-src 'self' https://static.cloudflareinsights.com; \
-                     style-src 'self' \
-                       'unsafe-hashes' \
-                       'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \
-                       'sha256-Od9mHMH7x2G6QuoV3hsPkDCwIyqbg2DX3F5nLeCYQBc=' \
-                       https://fonts.googleapis.com; \
-                     img-src 'self' data:; \
-                     font-src 'self' https://fonts.gstatic.com; \
-                     connect-src 'self' https://cloudflareinsights.com"
+                    script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; \
+                    style-src 'self' https://fonts.googleapis.com; \
+                    img-src 'self' data:; \
+                    font-src 'self' https://fonts.gstatic.com; \
+                    connect-src 'self' https://cloudflareinsights.com"
                 )
             )
         )
@@ -55,36 +49,52 @@ async fn main() -> anyhow::Result<()> {
             )
         );
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:8443").await?;
-    println!("Listening on http://0.0.0.0:8443");
+    let listener = tokio::net::TcpListener::bind(IP_ADDRESS).await?;
+    println!("Listening on http://{}", IP_ADDRESS);
     axum::serve(listener, app).await?;
 
     Ok(())
 }
 
-async fn get_content() -> impl axum::response::IntoResponse {
-    println!("API Request received: /api/content");
-
-    let headers = [
-        ("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate"),
-        ("Pragma", "no-cache"),
-        ("Expires", "0"),
-    ];
-
-    match std::fs::read_to_string("assets/content.json") {
-        Ok(content_str) => {
-            match serde_json::from_str::<Value>(&content_str) {
-                Ok(content) => (headers, Json(content)).into_response(),
-                Err(e) => {
-                    eprintln!("Error parsing content.json: {}", e);
-                    (headers, Json(serde_json::json!({ "error": "Invalid JSON" }))).into_response()
-                }
-            }
-        }
+async fn render_index(State(state): State<Arc<AppState>>) -> Html<String> {
+    let content_str = match std::fs::read_to_string("assets/content.json") {
+        Ok(s) => s,
         Err(e) => {
-            let cwd = env::current_dir().unwrap_or_default();
-            eprintln!("Error reading content.json: {} (CWD: {:?})", e, cwd);
-            (headers, Json(serde_json::json!({ "error": "File not found" }))).into_response()
+            eprintln!("Error reading content.json: {}", e);
+            return Html("<p>Erreur lors du chargement du contenu.</p>".to_string());
+        }
+    };
+
+    let content: Value = match serde_json::from_str(&content_str) {
+        Ok(v) => v,
+        Err(e) => {
+            eprintln!("Error parsing content.json: {}", e);
+            return Html("<p>Erreur lors du parsing du contenu.</p>".to_string());
+        }
+    };
+
+    let mut ctx = tera::Context::new();
+    if let Value::Object(map) = content {
+        for (key, value) in map {
+            ctx.insert(key, &value);
+        }
+    }
+
+    match state.tera.render("index.html", &ctx) {
+        Ok(html) => Html(html),
+        Err(e) => {
+            eprintln!("Template error: {}", e);
+            Html("<p>Erreur de template.</p>".to_string())
+        }
+    }
+}
+
+async fn render_wip(State(state): State<Arc<AppState>>) -> Html<String> {
+    match state.tera.render("wip.html", &tera::Context::new()) {
+        Ok(html) => Html(html),
+        Err(e) => {
+            eprintln!("Template error: {}", e);
+            Html("<p>Erreur de template.</p>".to_string())
         }
     }
 }

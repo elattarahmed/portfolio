@@ -3,29 +3,37 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ahmed El Attar - Portfolio</title>
+		<meta name="description" content="Portfolio d'Ahmed El Attar - Étudiant en Sécurité Informatique" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap"
 			rel="stylesheet" />
-		<link rel="stylesheet" href="style.css" />
-		<title>Mon Portfolio</title>
+		<link rel="stylesheet" href="/style.css" />
+		<link rel="icon" href="/favicon.ico" />
 	</head>
 	<body>
 		<header>
 			<nav>
 				<div class="logo">{{ header.logo }}</div>
-				<ul>
+				<ul id="nav-links">
 					{% for item in header.nav %}
-					<li><a href="{{ item.link }}">{{ item.text }}</a></li>
+					<li><a href="{{ item.link }}" class="nav-link">{{ item.text }}</a></li>
 					{% endfor %}
 				</ul>
+				<button class="burger" id="burger-btn" aria-label="Menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
 			</nav>
 		</header>
 
 		<main>
 			<section id="home" class="hero">
 				<div class="hero-content">
+					<span class="prompt">$ whoami</span>
 					<h1>
 						{{ hero.greeting | safe }}
 						<span class="highlight">{{ hero.name }}</span>
@@ -40,7 +48,17 @@
 
 			<section id="about">
 				<h2>{{ about.title }}</h2>
-				<p>{{ about.description }}</p>
+				<p class="about-text">{{ about.description }}</p>
+				<div class="about-badges">
+					<span class="badge">🛡 Cybersécurité</span>
+					<span class="badge">🖥 Admin Système</span>
+					<span class="badge">&lt;/&gt; Développement</span>
+				</div>
+				<ul class="about-skills">
+					{% for item in skills.items %}
+					<li>{{ item }}</li>
+					{% endfor %}
+				</ul>
 			</section>
 
 			<section id="experience">
@@ -48,12 +66,18 @@
 				<div class="experience-list">
 					{% for item in experience.items %}
 					<div class="experience-item" onclick="this.classList.toggle('expanded')">
-						<div class="header-content">
-							<h3>{{ item.role }}</h3>
-							<div class="company">{{ item.company }}</div>
-							<div class="period">{{ item.period }}</div>
+						<div class="exp-header">
+							<div class="exp-main">
+								<div class="exp-company-line">
+									<span class="company-icon">🏢</span>
+									<span class="company">{{ item.company }}</span>
+									<span class="period">{{ item.period }}</span>
+								</div>
+								<div class="role">{{ item.role }}</div>
+								<p class="summary">{{ item.description }}</p>
+							</div>
+							<span class="expand-label">Détails </span>
 						</div>
-						<p class="summary">{{ item.description }}</p>
 						<div class="details">
 							<ul>
 								{% for detail in item.details %}
@@ -71,33 +95,41 @@
 				<div class="education-list">
 					{% for item in education.items %}
 					<div class="education-item" onclick="this.classList.toggle('expanded')">
-						<div class="header-content">
-							<h3>{{ item.degree }}</h3>
-							<div class="school">{{ item.school }}</div>
-							<div class="period">{{ item.period }}</div>
+						<div class="edu-header">
+							<div class="edu-main">
+								<div class="edu-title-line">
+									<span class="school-icon">🎓</span>
+									<span class="edu-title"
+										>{{ item.school }} — {{ item.degree
+										}}</span
+									>
+									<span class="period">{{ item.period }}</span>
+								</div>
+								{% if item.description %}
+								<p class="edu-description">{{ item.description }}</p>
+								{% endif %}
+							</div>
+							<span class="expand-label">Détails </span>
 						</div>
 						<div class="details">
-							{% if item.details %}
-							<ul>
-								{% for detail in item.details %}
-								<li>{{ detail }}</li>
-								{% endfor %}
-							</ul>
-							{% endif %} {% if item.sub_items %}
+							{% if item.sub_items %}
 							<div class="sub-items-container">
 								{% for sub in item.sub_items %}
 								<div class="sub-item">
 									<div class="sub-header">
+										<span class="sub-arrow">→</span>
 										<h4>{{ sub.degree }}</h4>
 										<span class="sub-period"
 											>{{ sub.period }}</span
 										>
 									</div>
-									<ul>
+									{% if sub.details %}
+									<ul class="sub-details">
 										{% for detail in sub.details %}
 										<li>{{ detail }}</li>
 										{% endfor %}
 									</ul>
+									{% endif %}
 								</div>
 								{% endfor %}
 							</div>
@@ -108,29 +140,29 @@
 				</div>
 			</section>
 
-			<section id="skills">
-				<h2>{{ skills.title }}</h2>
-				<ul class="skills-list">
-					{% for item in skills.items %}
-					<li>{{ item }}</li>
-					{% endfor %}
-				</ul>
-			</section>
-
 			<section id="projects">
 				<h2>{{ projects.title }}</h2>
-				<div class="projects-grid">
+				<div class="project-list">
 					{% for project in projects.items %}
 					<div class="project-card" onclick="this.classList.toggle('expanded')">
-						<div class="card-header">
-							<h3>{{ project.title }}</h3>
-							{% if project.difficulty %}
-							<span class="difficulty {{ project.difficulty | lower }}"
-								>{{ project.difficulty }}</span
-							>
-							{% endif %}
+						<div class="project-header">
+							<div class="project-main">
+								<div class="project-title-line">
+									<span class="term-prefix">&gt;_</span>
+									<span class="project-title"
+										>{{ project.title }}</span
+									>
+									{% if project.difficulty %}
+									<span
+										class="difficulty {{ project.difficulty | lower }}"
+										>{{ project.difficulty }}</span
+									>
+									{% endif %}
+								</div>
+								<p class="summary">{{ project.description }}</p>
+							</div>
+							<span class="expand-label">Détails </span>
 						</div>
-						<p class="summary">{{ project.description }}</p>
 						<div class="details">
 							<ul>
 								{% for detail in project.details %}
@@ -143,11 +175,26 @@
 				</div>
 			</section>
 
+			<section id="recommendations">
+				<h2>{{ recommendations.title }}</h2>
+				<div class="recommendations-grid">
+					{% for rec in recommendations.items %}
+					<div class="recommendation-card">
+						<p class="rec-text">{{ rec.text }}</p>
+						<div class="rec-footer">
+							<span class="rec-name">{{ rec.name }}</span>
+							<span class="rec-role">{{ rec.role }}, {{ rec.company }}</span>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</section>
+
 			<section id="contact">
 				<h2>{{ contact.title }}</h2>
 				<p>{{ contact.description }}</p>
 				<a href="{{ contact.buttonLink }}" class="btn btn-secondary"
-					>{{ contact.buttonText }}</a
+					>✉ {{ contact.buttonText }}</a
 				>
 			</section>
 		</main>
@@ -155,5 +202,6 @@
 		<footer>
 			<p>{{ footer.text | safe }}</p>
 		</footer>
+		<script src="/main.js"></script>
 	</body>
 </html>
