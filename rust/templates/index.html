@@ -11,7 +11,7 @@
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap"
 			rel="stylesheet" />
 		<link rel="stylesheet" href="/style.css" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/favicon.ico" />
 	</head>
 	<body>
 		<header>
@@ -169,6 +169,23 @@
 								<li>{{ detail }}</li>
 								{% endfor %}
 							</ul>
+							{% if project.link %}
+							<div class="project-link-row">
+								{% if "http" in project.link %}
+								<a
+									href="{{ project.link }}"
+									class="project-link"
+									target="_blank"
+									rel="noopener"
+									>↗ Voir le projet</a
+								>
+								{% else %}
+								<span class="project-link-wip"
+									>⏳ {{ project.link }}</span
+								>
+								{% endif %}
+							</div>
+							{% endif %}
 						</div>
 					</div>
 					{% endfor %}

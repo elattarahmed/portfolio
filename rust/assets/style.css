@@ -615,6 +615,29 @@ h2::after {
 	content: "└── ";
 }
 
+.project-link-row {
+	margin-top: 0.75rem;
+	padding-top: 0.75rem;
+	border-top: 1px solid hsl(var(--border));
+}
+
+.project-link {
+	font-size: 0.82rem;
+	color: hsl(var(--primary));
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	transition: text-shadow 0.2s;
+}
+
+.project-link:hover {
+	text-shadow: 0 0 8px hsl(var(--primary) / 0.5);
+}
+
+.project-link-wip {
+	font-size: 0.82rem;
+	color: hsl(var(--fg-muted));
+}
+
 /* Badges difficulté */
 .difficulty {
 	font-family: var(--font-mono);
@@ -743,19 +766,33 @@ footer {
 	height: 2px;
 	background: hsl(var(--primary));
 	border-radius: 2px;
-	transition: transform 0.3s, opacity 0.3s;
+	transition:
+		transform 0.3s,
+		opacity 0.3s;
 }
 
-.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.burger.open span:nth-child(2) { opacity: 0; }
-.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.burger.open span:nth-child(1) {
+	transform: translateY(7px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+	opacity: 0;
+}
+.burger.open span:nth-child(3) {
+	transform: translateY(-7px) rotate(-45deg);
+}
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 1000px) {
-	.hero h1 { font-size: 2rem; }
-	h2 { font-size: 1.2rem; }
+	.hero h1 {
+		font-size: 2rem;
+	}
+	h2 {
+		font-size: 1.2rem;
+	}
 
-	.burger { display: flex; }
+	.burger {
+		display: flex;
+	}
 
 	#nav-links {
 		display: none;
@@ -771,9 +808,16 @@ footer {
 		gap: 1rem;
 	}
 
-	#nav-links.open { display: flex; }
+	#nav-links.open {
+		display: flex;
+	}
 
-	.recommendations-grid { grid-template-columns: 1fr; }
+	.recommendations-grid {
+		grid-template-columns: 1fr;
+	}
 	.project-card:nth-child(odd),
-	.project-card:nth-child(even) { margin-left: 0; margin-right: 0; }
+	.project-card:nth-child(even) {
+		margin-left: 0;
+		margin-right: 0;
+	}
 }
