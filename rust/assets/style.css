@@ -544,10 +544,10 @@ h2::after {
 }
 
 .project-card:nth-child(odd) {
-	margin-right: 10rem;
+	margin-right: 20rem;
 }
 .project-card:nth-child(even) {
-	margin-left: 10rem;
+	margin-left: 20rem;
 }
 
 .project-card {
