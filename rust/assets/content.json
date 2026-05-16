@@ -189,8 +189,7 @@
 					"Rogue AP : Création d'un AP malveillant afin de récolter les communications des utilisateurs connectés",
 					"Analyse : Capture et analyse de paquets via WireShark"
 				],
-				"tools": "Aircrack-ng, WireShark, Script Shell",
-				"link": "https://github.com/RafaLe0/RogueAP"
+				"tools": "Aircrack-ng, WireShark, Script Shell"
 			},
 			{
 				"title": "Gestion Accessoires (Publicis)",
@@ -225,8 +224,7 @@
 					"Réseau & Système: IPSEC over GRE, Windows Serveur, OSPF",
 					"Android : Lecture et Génération QrCode/NFC",
 					"Allez voir le schéma infra disponible sur le github"
-				],
-				"link": "https://github.com/matxsu/Ecodeli"
+				]
 			},
 			{
 				"title": "OTA Server",
@@ -237,8 +235,7 @@
 					"Process : Parc de test, Envoi des mises à jours (avec signature serveur), Check install et Rollback, Envoi des logs",
 					"Finalisation : Stockage des mise à jour sur serveur, déploiement général",
 					"Sécurité : Infra PKI, CheckSum, Signature serveur, Dual-Park Partitioning, TARS"
-				],
-				"link": "https://docs.google.com/document/d/15yNj1Inqb1bttLFWeOmM9s18oCui5Qen_id08QQieOw/edit?tab=t.lochv013k5rn#heading=h.cjyahjj03s7k"
+				]
 			}
 		]
 	},
