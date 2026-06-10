@@ -39,9 +39,7 @@
 						<span class="highlight">{{ hero.name }}</span>
 					</h1>
 					<p class="hero-title">{{ hero.title }}</p>
-					<p class="hero-description">
-						{{ hero.description }}{{ hero["last-modified"] }}
-					</p>
+					<p class="hero-description">{{ hero.description }}{{ hero["last-modified"] }}</p>
 					<a href="{{ hero.buttonLink }}" class="btn">{{ hero.buttonText }}</a>
 				</div>
 			</section>
@@ -51,7 +49,7 @@
 				<p class="about-text">{{ about.description }}</p>
 				<div class="about-badges">
 					<span class="badge">🛡 Cybersécurité</span>
-					<span class="badge">🖥 Admin Système</span>
+					<span class="badge">🖥 Pentesting</span>
 					<span class="badge">&lt;/&gt; Développement</span>
 				</div>
 				<ul class="about-skills">
@@ -99,10 +97,7 @@
 							<div class="edu-main">
 								<div class="edu-title-line">
 									<span class="school-icon">🎓</span>
-									<span class="edu-title"
-										>{{ item.school }} — {{ item.degree
-										}}</span
-									>
+									<span class="edu-title">{{ item.school }} — {{ item.degree }}</span>
 									<span class="period">{{ item.period }}</span>
 								</div>
 								{% if item.description %}
@@ -119,9 +114,7 @@
 									<div class="sub-header">
 										<span class="sub-arrow">→</span>
 										<h4>{{ sub.degree }}</h4>
-										<span class="sub-period"
-											>{{ sub.period }}</span
-										>
+										<span class="sub-period">{{ sub.period }}</span>
 									</div>
 									{% if sub.details %}
 									<ul class="sub-details">
@@ -149,12 +142,9 @@
 							<div class="project-main">
 								<div class="project-title-line">
 									<span class="term-prefix">&gt;_</span>
-									<span class="project-title"
-										>{{ project.title }}</span
-									>
+									<span class="project-title">{{ project.title }}</span>
 									{% if project.difficulty %}
-									<span
-										class="difficulty {{ project.difficulty | lower }}"
+									<span class="difficulty {{ project.difficulty | lower }}"
 										>{{ project.difficulty }}</span
 									>
 									{% endif %}
@@ -172,17 +162,11 @@
 							{% if project.link %}
 							<div class="project-link-row">
 								{% if "http" in project.link %}
-								<a
-									href="{{ project.link }}"
-									class="project-link"
-									target="_blank"
-									rel="noopener"
+								<a href="{{ project.link }}" class="project-link" target="_blank" rel="noopener"
 									>↗ Voir le projet</a
 								>
 								{% else %}
-								<span class="project-link-wip"
-									>⏳ {{ project.link }}</span
-								>
+								<span class="project-link-wip">⏳ {{ project.link }}</span>
 								{% endif %}
 							</div>
 							{% endif %}
@@ -210,9 +194,7 @@
 			<section id="contact">
 				<h2>{{ contact.title }}</h2>
 				<p>{{ contact.description }}</p>
-				<a href="{{ contact.buttonLink }}" class="btn btn-secondary"
-					>✉ {{ contact.buttonText }}</a
-				>
+				<a href="{{ contact.buttonLink }}" class="btn btn-secondary">✉ {{ contact.buttonText }}</a>
 			</section>
 		</main>
 
